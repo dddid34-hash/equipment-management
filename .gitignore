@@ -1,5 +1,5 @@
 # ไฟล์สำคัญ - ห้ามอัปขึ้น GitHub
-config.php
+
 *.log
 .env
 *.env.local
