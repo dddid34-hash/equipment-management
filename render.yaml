@@ -1,0 +1,23 @@
+services:
+  - type: web
+    name: aad-system
+    env: php
+    buildCommand: "./vendor/bin/heroku-php-apache2 public/"
+    startCommand: "php -S 0.0.0.0:$PORT -t public"
+    envVars:
+      - key: MYSQL_HOST
+        fromDatabase:
+          name: aad-db
+          property: host
+      - key: MYSQL_DATABASE
+        fromDatabase:
+          name: aad-db
+          property: database
+      - key: MYSQL_USER
+        fromDatabase:
+          name: aad-db
+          property: username
+      - key: MYSQL_PASSWORD
+        fromDatabase:
+          name: aad-db
+          property: password
