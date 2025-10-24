@@ -1,0 +1,7 @@
+"" 
+"โปรเจกต์จัดการยืม-คืนอุปกรณ์ ด้วย PHP + MySQL" 
+"" 
+"## วิธีติดตั้ง" 
+"1. นำเข้า `database.sql` ลง phpMyAdmin" 
+"2. แก้ `config.php` ให้ถูกต้อง" 
+"3. รันที่ `http://localhost/aad`" 
