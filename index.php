@@ -1,5 +1,6 @@
 <?php
-require_once 'config.php';
+require_once 'config.php';\nrequire_once 'functions.php';
+require_once 'functions.php';  // ต้องมีบรรทัดนี้
 checkLogin();
 
 // สถิติ
@@ -80,7 +81,7 @@ $recent_borrows = $conn->query("SELECT b.*, e.equipment_name, u.full_name
     <nav class="navbar navbar-expand-lg navbar-dark">
         <div class="container-fluid">
             <a class="navbar-brand" href="index.php">
-                <i class="bi bi-box-seam"></i> ระบบยืม-คืนอุปกรณ์
+                ระบบยืม-คืนอุปกรณ์
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
                 <span class="navbar-toggler-icon"></span>
@@ -88,49 +89,37 @@ $recent_borrows = $conn->query("SELECT b.*, e.equipment_name, u.full_name
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav me-auto">
                     <li class="nav-item">
-                        <a class="nav-link active" href="index.php">
-                            <i class="bi bi-house"></i> หน้าแรก
-                        </a>
+                        <a class="nav-link active" href="index.php">หน้าแรก</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="equipments.php">
-                            <i class="bi bi-laptop"></i> อุปกรณ์
-                        </a>
+                        <a class="nav-link" href="equipments.php">อุปกรณ์</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="borrowing.php">
-                            <i class="bi bi-arrow-left-right"></i> ยืม-คืน
-                        </a>
+                        <a class="nav-link" href="borrowing.php">ยืม-คืน</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="materials.php">
-                            <i class="bi bi-box"></i> เบิกวัสดุ
-                        </a>
+                        <a class="nav-link" href="materials.php">เบิกวัสดุ</a>
                     </li>
                     <?php if ($_SESSION['role'] === 'admin'): ?>
                     <li class="nav-item">
-                        <a class="nav-link" href="manage_user.php">
-                            <i class="bi bi-people"></i> ผู้ใช้
-                        </a>
+                        <a class="nav-link" href="manage_user.php">ผู้ใช้</a>
                     </li>
                     <?php endif; ?>
                     <?php if ($_SESSION['role'] === 'admin'): ?>
                     <li class="nav-item">
-                        <a class="nav-link" href="borrow_report.php">
-                            <i class="bi bi-people"></i> รายงานการยืม-คืนอุปกรณ์
-                        </a>
+                        <a class="nav-link" href="borrow_report.php">รายงานการยืม-คืนอุปกรณ์</a>
                     </li>
                     <?php endif; ?>
                 </ul>
                 <ul class="navbar-nav">
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
-                            <i class="bi bi-person-circle"></i> <?php echo $_SESSION['full_name']; ?>
+                            <?php echo $_SESSION['full_name']; ?>
                         </a>
                         <ul class="dropdown-menu dropdown-menu-end">
-                            <li><a class="dropdown-item" href="profile.php"><i class="bi bi-person"></i> โปรไฟล์</a></li>
+                            <li><a class="dropdown-item" href="profile.php">โปรไฟล์</a></li>
                             <li><hr class="dropdown-divider"></li>
-                            <li><a class="dropdown-item" href="logout.php"><i class="bi bi-box-arrow-right"></i> ออกจากระบบ</a></li>
+                            <li><a class="dropdown-item" href="logout.php">ออกจากระบบ</a></li>
                         </ul>
                     </li>
                 </ul>
@@ -194,7 +183,7 @@ $recent_borrows = $conn->query("SELECT b.*, e.equipment_name, u.full_name
             <div class="col-lg-7">
                 <div class="card">
                     <div class="card-header bg-white py-3">
-                        <h5 class="mb-0"><i class="bi bi-laptop"></i> อุปกรณ์ล่าสุด</h5>
+                        <h5 class="mb-0">อุปกรณ์ล่าสุด</h5>
                     </div>
                     <div class="card-body p-0">
                         <div class="table-responsive">
@@ -242,7 +231,7 @@ $recent_borrows = $conn->query("SELECT b.*, e.equipment_name, u.full_name
                     </div>
                     <div class="card-footer bg-white text-center">
                         <a href="equipments.php" class="btn btn-primary btn-action">
-                            <i class="bi bi-eye"></i> ดูทั้งหมด
+                            ดูทั้งหมด
                         </a>
                     </div>
                 </div>
@@ -252,7 +241,7 @@ $recent_borrows = $conn->query("SELECT b.*, e.equipment_name, u.full_name
             <div class="col-lg-5">
                 <div class="card">
                     <div class="card-header bg-white py-3">
-                        <h5 class="mb-0"><i class="bi bi-clock-history"></i> การยืมล่าสุด</h5>
+                        <h5 class="mb-0">การยืมล่าสุด</h5>
                     </div>
                     <div class="card-body p-0">
                         <div class="list-group list-group-flush">
@@ -278,9 +267,8 @@ $recent_borrows = $conn->query("SELECT b.*, e.equipment_name, u.full_name
                                         <?php echo $borrow_status_text[$borrow['status']]; ?>
                                     </span></small>
                                 </div>
-                                <p class="mb-1"><small><i class="bi bi-person"></i> <?php echo $borrow['full_name']; ?></small></p>
+                                <p class="mb-1"><small><?php echo $borrow['full_name']; ?></small></p>
                                 <small class="text-muted">
-                                    <i class="bi bi-calendar"></i> 
                                     <?php echo date('d/m/Y', strtotime($borrow['borrow_date'])); ?>
                                 </small>
                             </div>
@@ -289,7 +277,7 @@ $recent_borrows = $conn->query("SELECT b.*, e.equipment_name, u.full_name
                     </div>
                     <div class="card-footer bg-white text-center">
                         <a href="borrowing.php" class="btn btn-primary btn-action">
-                            <i class="bi bi-list"></i> ดูทั้งหมด
+                            ดูทั้งหมด
                         </a>
                     </div>
                 </div>
